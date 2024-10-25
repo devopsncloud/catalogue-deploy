@@ -33,6 +33,15 @@ pipeline {
             }
         }
 
+        stage('Terraform initialising') {
+            steps {
+                sh """
+                    cd terraform 
+                    terraform init --backend-config=${params.environment}/backend.tf -reconfigure
+                """
+            }
+        }
+
 //         stage('Checking Parameters usage') {
 //             steps{
 //                  sh """
