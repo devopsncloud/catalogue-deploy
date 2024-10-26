@@ -56,7 +56,7 @@ pipeline {
 
 
         stage('Terraform plan') {
-            steps {
+            steps { 
               
                 sh """
                     cd terraform 
