@@ -34,8 +34,19 @@ pipeline {
             }
         }
 
+        stage('Checking Parameters usage') {
+                    steps{
+                        sh """
+                            echo "Hello ${params.version}"
+
+                            echo "Biography: ${params.environment}"
+                            """
+            }
+        }
+
         stage('Terraform initialising') {
             steps {
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) 
                 sh """
                     cd terraform 
                     terraform init --backend-config=${params.environment}/backend.tf -reconfigure
@@ -43,22 +54,7 @@ pipeline {
             }
         }
 
-//         stage('Checking Parameters usage') {
-//             steps{
-//                  sh """
-//                     echo "Hello ${params.PERSON}"
-
-//                     echo "Biography: ${params.BIOGRAPHY}"
-
-//                     echo "Toggle: ${params.TOGGLE}"
-
-//                     echo "Choice: ${params.CHOICE}"
-
-//                     echo "Password: ${params.PASSWORD}"
-
-//         """
-//     }
-// }
+        
 }
 
 
