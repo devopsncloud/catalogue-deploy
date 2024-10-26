@@ -37,9 +37,9 @@ pipeline {
         stage('Checking Parameters usage') {
                     steps{
                         sh """
-                            echo "Hello ${params.version}"
+                            echo "${params.version}"
 
-                            echo "Biography: ${params.environment}"
+                            echo "${params.environment}"
                             """
             }
         }
