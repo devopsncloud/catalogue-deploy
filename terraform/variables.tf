@@ -24,3 +24,8 @@ variable "environment" {
 variable "zone_name" {
   default = "roboriya.shop"
 }
+
+
+variable "app_version"{
+  
+}
